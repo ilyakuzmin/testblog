@@ -1,3 +1,7 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name
+  has_ancestry
+
+  attr_protected :ancestry
+
+  has_many :posts
 end
