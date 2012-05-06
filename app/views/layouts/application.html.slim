@@ -35,6 +35,7 @@ html lang="en"
       .content
         .row
           .span9
+            = render 'layouts/notices'
             = yield
           .span3
             .well.sidebar-nav
@@ -45,8 +46,6 @@ html lang="en"
                 li= link_to "Link 2", "/path2"
                 li= link_to "Link 3", "/path3"
 
-      footer
-        p &copy; Company 2012
     /!
       Javascripts
       \==================================================
