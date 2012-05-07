@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :category_id
+  acts_as_taggable
+
+  attr_accessible :title, :body, :category_id, :tag_list
 
   belongs_to :category
 

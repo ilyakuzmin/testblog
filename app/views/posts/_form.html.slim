@@ -11,6 +11,10 @@
     = f.label :category_id, :class => 'control-label'
     .controls
       = f.select :category_id, options_for_select_category
+  .control-group
+    = f.label :tag_list, :class => 'control-label'
+    .controls
+      = f.text_field :tag_list, :id => "post_tags", "data-pre" => @post.tags.map{|t| {:id => t.name, :name => t.name }}.to_json
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     '

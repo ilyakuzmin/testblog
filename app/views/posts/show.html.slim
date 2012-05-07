@@ -7,6 +7,9 @@ p
   strong Category:
   = @post.category.name
 p
+  strong Tags:
+  = @post.tags.join(", ")
+p
   strong Created by:
   = @post.user_id
 p

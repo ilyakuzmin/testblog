@@ -52,4 +52,11 @@ class PostsController < ApplicationController
 
     redirect_to posts_url
   end
+
+  def tags
+    @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%") 
+    respond_to do |format|
+      format.json { render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
+    end
+  end
 end

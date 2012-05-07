@@ -1,7 +1,10 @@
 Uniqblog::Application.routes.draw do
   root :to => 'posts#index'
 
+  get "posts/tags" => "posts#tags", :as => :tags
+
   resources :posts
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
