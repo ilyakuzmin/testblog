@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @posts = Post
       .order_by_created_at(params[:order])
       .containing_text(params[:search])
+      .with_category_id(params[:category])
 
     respond_with(@posts)
   end

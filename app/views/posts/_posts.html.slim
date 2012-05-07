@@ -16,3 +16,6 @@
       br
       b Tags:&nbsp
       = post.tags.join(", ")
+
+- if @posts.empty?
+  .alert.alert-info There is no posts!

@@ -9,5 +9,6 @@ class Post < ActiveRecord::Base
 
   scope :order_by_created_at, lambda {|direction| order("created_at #{direction == 'desc' ? 'DESC' : 'ASC'}")}
   scope :containing_text, lambda {|text| where("title LIKE ? OR body LIKE ?", "%#{text}%", "%#{text}%")}
+  scope :with_category_id, lambda {|category_id| where("category_id = ?", category_id)}
 
 end
