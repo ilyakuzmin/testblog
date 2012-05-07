@@ -1,4 +1,6 @@
 Uniqblog::Application.routes.draw do
+  devise_for :users
+
   root :to => 'posts#index'
 
   get "posts/tags" => "posts#tags", :as => :tags
