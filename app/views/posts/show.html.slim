@@ -18,7 +18,9 @@ p
 
 .form-actions
   = link_to 'Back', posts_path, :class => 'btn'
-  '
-  = link_to 'Edit', edit_post_path(@post), :class => 'btn'
-  '
-  = link_to 'Delete', post_path(@post), :method => "delete", :confirm => 'Are you sure?', :class => 'btn btn-danger'
+  - if can? :edit, @post
+    '
+    = link_to 'Edit', edit_post_path(@post), :class => 'btn'
+  - if can? :delete, @post
+    '
+    = link_to 'Delete', post_path(@post), :method => "delete", :confirm => 'Are you sure?', :class => 'btn btn-danger'
