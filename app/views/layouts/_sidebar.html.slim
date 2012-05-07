@@ -1,9 +1,9 @@
-h3 Sorting & Filtering
 ul.nav.nav-list
+  li.nav-header Sorting
   li= order_by_created_at_link('Oldest first', 'asc')
   li= order_by_created_at_link('Newset first', 'desc')
   li.nav-header Search
   li
-    = form_tag '', :method => :get, :remote => true do
+    = form_tag params, :method => :get, :remote => true do
       = text_field_tag :search, params[:search]
   li= link_to 'Reset', '', :remote => true

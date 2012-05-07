@@ -1,9 +1,9 @@
 module PostsHelper
   def order_by_created_at_link(name, direction)
     if params[:order] == direction
-      content_tag(:a, name, :class => 'btn disabled')
+      content_tag(:a, content_tag(:i, '', :class => "icon-arrow-right").html_safe + name)
     else
-      link_to name, params.merge({:order => direction}), :class => 'btn', :remote => true
+      link_to name, params.merge({:order => direction}), :remote => true
     end
   end
 
