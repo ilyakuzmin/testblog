@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   respond_to :html
+  respond_to :js, :only => :index
 
   def index
-    @posts = Post.all
+    @posts = Post
+      .order_by_created_at(params[:order])
 
     respond_with(@posts)
   end

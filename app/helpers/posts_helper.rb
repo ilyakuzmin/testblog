@@ -1,4 +1,12 @@
 module PostsHelper
+  def order_by_created_at_link(name, direction)
+    if params[:order] == direction
+      content_tag(:a, name, :class => 'btn disabled')
+    else
+      link_to name, params.merge({:order => direction}), :class => 'btn', :remote => true
+    end
+  end
+
   def options_for_select_category
     categories = Category.arrange
     build_sub_categories(categories)

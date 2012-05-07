@@ -6,4 +6,8 @@ class Post < ActiveRecord::Base
   belongs_to :category
 
   validates :category_id, :title, :body, :presence => true
+
+  def self.order_by_created_at(order)
+    order == 'desc' ? self.order("created_at DESC") : self.order("created_at ASC")
+  end
 end

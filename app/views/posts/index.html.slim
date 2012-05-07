@@ -1,23 +1,7 @@
 h1 Posts
 
-- @posts.each do |post|
-  .well
-    h2
-      = post.title
-      small &nbsp by #{post.user_id} &nbsp
-      = link_to 'Edit', edit_post_path(post), :class => 'btn'
-      '
-      = link_to 'Delete', post_path(post), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
-    p = post.body
-    p 
-      b Category:&nbsp
-      = post.category.name
-      br
-      b Created at:
-      = nice_time(post.created_at)
-      br
-      b Tags:&nbsp
-      = post.tags.join(", ")
+#posts
+  = render 'posts'
 
 = link_to 'New', new_post_path, :class => 'btn btn-primary'
 
