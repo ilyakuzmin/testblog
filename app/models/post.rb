@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
 
   validates :category_id, :title, :body, :presence => true
 
-  def self.order_by_created_at(order)
-    order == 'desc' ? self.order("created_at DESC") : self.order("created_at ASC")
-  end
+  scope :order_by_created_at, lambda {|direction| order("created_at #{direction == 'desc' ? 'DESC' : 'ASC'}")}
+  scope :containing_text, lambda {|text| where("title LIKE ? OR body LIKE ?", "%#{text}%", "%#{text}%")}
+
 end

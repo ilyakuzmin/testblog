@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post
       .order_by_created_at(params[:order])
+      .containing_text(params[:search])
 
     respond_with(@posts)
   end
