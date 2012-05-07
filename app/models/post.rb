@@ -4,8 +4,9 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :body, :category_id, :tag_list
 
   belongs_to :category
+  belongs_to :user
 
-  validates :category_id, :title, :body, :presence => true
+  validates :category_id, :title, :body, :user_id, :presence => true
 
   scope :order_by_created_at, lambda {|direction| order("posts.created_at #{direction == 'desc' ? 'DESC' : 'ASC'}") }
   scope :containing_text, lambda {|text| where("posts.title LIKE ? OR posts.body LIKE ?", "%#{text}%", "%#{text}%") }

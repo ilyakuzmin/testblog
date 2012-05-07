@@ -2,10 +2,12 @@
   .well
     h2
       = post.title
-      small &nbsp by #{post.user_id} &nbsp
-      = link_to 'Edit', edit_post_path(post), :class => 'btn'
+      small &nbsp by #{post.user.email} &nbsp
+      - if can? :edit, post
+        = link_to 'Edit', edit_post_path(post), :class => 'btn'
       '
-      = link_to 'Delete', post_path(post), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
+      - if can? :delete, post
+        = link_to 'Delete', post_path(post), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
     p = post.body
     p 
       b Category:&nbsp
