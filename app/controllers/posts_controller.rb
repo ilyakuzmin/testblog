@@ -10,6 +10,7 @@ class PostsController < ApplicationController
       .order_by_created_at(params[:order])
       .containing_text(params[:search])
       .with_category_id(params[:category])
+      .includes(:user, :category, :tags)
 
     respond_with(@posts)
   end
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post.user = current_user
     if @post.save
       flash[:success] = 'Post was created successfully!'
     else
