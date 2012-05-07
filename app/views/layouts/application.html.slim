@@ -37,10 +37,7 @@ html lang="en"
             = render 'layouts/notices'
             = yield
           .span3
-            h1 Sorting & Filtering
-            .well
-              #sidebar
-                = render 'layouts/sidebar'
+            = yield(:sidebar) if content_for?(:sidebar)
 
     /!
       Javascripts

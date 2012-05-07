@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post
+      .with_tags(params[:tags])
       .order_by_created_at(params[:order])
       .containing_text(params[:search])
       .with_category_id(params[:category])

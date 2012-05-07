@@ -7,7 +7,16 @@ ul.nav.nav-list
   li
     = form_tag params, :method => :get, :remote => true do
       = text_field_tag :search, params[:search]
-  li= link_to 'Reset', '', :remote => true
 
   li.nav-header Category
   = categories_list(@posts)
+
+br
+.nav
+  .nav-header Tags
+.css-tags
+  - tag_cloud(@posts.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class|
+    = link_to_tag(tag.name, css_class)
+
+br
+= link_to 'Reset', posts_path, :class => 'btn', :remote => true

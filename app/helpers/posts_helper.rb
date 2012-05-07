@@ -31,6 +31,20 @@ module PostsHelper
     result
   end
 
+  def link_to_tag(name, css_class)
+    splited_tags = params[:tags] ? params[:tags].split(",") : []
+
+    if splited_tags.include? name
+      splited_tags.delete(name)
+      result = content_tag(:a, name, :class => css_class)
+      result += link_to '&times'.html_safe, params.merge({:tags => splited_tags.join(",")}), :class => 'close'
+    else
+      splited_tags << name
+      result = link_to name, params.merge({:tags => splited_tags.join(",")})
+    end
+    result
+  end
+
   private
   def build_sub_categories(categories, depth = 0)
     result = []

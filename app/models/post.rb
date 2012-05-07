@@ -7,8 +7,9 @@ class Post < ActiveRecord::Base
 
   validates :category_id, :title, :body, :presence => true
 
-  scope :order_by_created_at, lambda {|direction| order("created_at #{direction == 'desc' ? 'DESC' : 'ASC'}")}
-  scope :containing_text, lambda {|text| where("title LIKE ? OR body LIKE ?", "%#{text}%", "%#{text}%")}
-  scope :with_category_id, lambda {|category_id| where("category_id = ?", category_id)}
+  scope :order_by_created_at, lambda {|direction| order("posts.created_at #{direction == 'desc' ? 'DESC' : 'ASC'}") }
+  scope :containing_text, lambda {|text| where("posts.title LIKE ? OR posts.body LIKE ?", "%#{text}%", "%#{text}%") }
+  scope :with_category_id, lambda {|category_id| where("posts.category_id = ?", category_id) if category_id }
+  scope :with_tags, lambda {|tags| tagged_with(tags.split(",")) if tags.present? }
 
 end
