@@ -11,6 +11,7 @@ gem 'ancestry'
 gem 'acts-as-taggable-on'
 gem 'mysql2'
 gem 'devise'
+gem 'cancan'
 
 # Gems used only for assets and not required
 # in production environments by default.
