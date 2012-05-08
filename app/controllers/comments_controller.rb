@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(params[:comment])
+    @comment.user = current_user if user_signed_in?
 
     if @comment.save
       flash[:success] = 'Comment was created successfully!'
@@ -17,7 +18,7 @@ class CommentsController < ApplicationController
       flash[:error]   = 'There is an error while creating a new comment!'
     end
 
-    respond_with(@comment, :location => post_path(@post))
+    redirect_to post_path(@post)
   end
 
   def destroy

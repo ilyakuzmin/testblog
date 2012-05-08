@@ -1,0 +1,18 @@
+p
+  - if can? :see_state, comment
+    = comment_status(comment)
+  strong #{comment.user_email}
+  | &nbspsaid:
+  br
+  = comment.body
+
+- if can? :destroy, comment
+  = link_to 'Delete', @post ? post_comment_path(@post, comment) : comment_path(comment), :method => "delete", :confirm => 'Are you sure?', :class => 'btn btn-danger'
+
+- if (can? :change_state, comment) && comment.unverified?
+  '
+  = link_to 'Accept', (@post ? state_post_comment_path(@post, comment) : state_comment_path(comment)) + "?change_to=accept", :class => 'btn btn-success'
+  '
+  = link_to 'Decline', (@post ? state_post_comment_path(@post, comment) : state_comment_path(comment)) + "?change_to=decline", :class => 'btn btn-warning'
+
+hr

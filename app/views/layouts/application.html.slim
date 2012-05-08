@@ -28,6 +28,9 @@ html lang="en"
             ul.nav
               - if user_signed_in?
                 li= link_to "Hi, #{current_user.email}!", edit_user_registration_path
+                li= link_to 'Posts', posts_path
+                - if can? :change_state, Comment
+                  li= link_to 'Unverified comments', comments_path
                 li= link_to 'Sign out', destroy_user_session_path, :method => :delete
               - else
                 li= link_to 'Sign up', new_user_registration_path

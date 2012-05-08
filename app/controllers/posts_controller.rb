@@ -16,6 +16,12 @@ class PostsController < ApplicationController
   end
 
   def show
+    if can? :change_state, Comment
+      @comments = @post.comments
+    else
+      @comments = @post.comments.accepted_or_owner(current_user || nil)
+    end
+
     respond_with(@post)
   end
 

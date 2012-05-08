@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20120508191422) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "user_email"
     t.integer  "post_id"
     t.string   "state"

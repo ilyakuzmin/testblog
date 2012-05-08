@@ -3,11 +3,13 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :body, :user_email
 
-  validates :body, :present => true
+  validates :body, :presence => true
   validate :user_or_user_email_presence
 
   belongs_to :user
   belongs_to :post
+
+  scope :accepted_or_owner, lambda {|user_id| where("comments.state = 'accepted' OR user_id = ?", user_id)}
 
   aasm :column => :state do
     state :unverified, :initial => true
@@ -32,10 +34,14 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  def user_email
+    user ? user.email : read_attribute(:user_email)
+  end
+
   private
 
   def user_or_user_email_presence
-    unless user_id.present? && user_email.present?
+    unless user_id.present? || user_email.present?
       errors[:base] << "User should be present!"
     end
   end

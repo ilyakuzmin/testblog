@@ -21,6 +21,12 @@ p
   - if can? :edit, @post
     '
     = link_to 'Edit', edit_post_path(@post), :class => 'btn'
-  - if can? :delete, @post
+  - if can? :destroy, @post
     '
     = link_to 'Delete', post_path(@post), :method => "delete", :confirm => 'Are you sure?', :class => 'btn btn-danger'
+
+h1 Comments
+
+= render @comments
+
+= render 'comments/form'

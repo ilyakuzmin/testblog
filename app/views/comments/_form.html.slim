@@ -1,0 +1,13 @@
+- if can? :create, Comment
+  = form_for [@post, Comment.new], :html => { :class => "form-horizontal" } do |f|
+    - unless user_signed_in?
+      .control-group
+        = f.label :user_email, :class => 'control-label'
+        .controls
+          = f.text_field :user_email, :class => 'text_field'
+    .control-group
+      = f.label :body, :class => 'control-label'
+      .controls
+        = f.text_area :body, :class => 'text_area'
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
