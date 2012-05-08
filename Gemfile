@@ -9,11 +9,18 @@ gem 'slim'
 gem "twitter-bootstrap-rails"
 gem 'ancestry'
 gem 'acts-as-taggable-on'
-gem 'mysql2'
 gem 'devise'
 gem 'cancan'
 gem 'aasm'
 gem "recaptcha", :require => "recaptcha/rails"
+
+group :test, :development do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
