@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   respond_to :html
   respond_to :js, :only => :index
 
+  before_filter :load_comments, :only => :show
+
   def index
     @posts = Post
       .with_tags(params[:tags])
@@ -16,13 +18,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    if can? :change_state, Comment
-      @comments = @post.comments
-    else
-      @comments = @post.comments.accepted_or_owner(current_user)
-    end
-    @comment = Comment.new
-
     respond_with(@post)
   end
 

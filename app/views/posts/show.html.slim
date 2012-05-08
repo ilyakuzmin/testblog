@@ -11,7 +11,7 @@ p
   = @post.tags.join(", ")
 p
   strong Created by:
-  = @post.user_id
+  = @post.user.email
 p
   strong Created at:
   = nice_time(@post.created_at)

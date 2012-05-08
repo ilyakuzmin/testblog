@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
 
   respond_to :html
 
+  before_filter :load_comments, :only => :create
+
   def index
     @comments = Comment.unverified
   end
@@ -14,11 +16,11 @@ class CommentsController < ApplicationController
 
     if verify_recaptcha_for_guest && @comment.save
       flash[:success] = 'Comment was created successfully!'
+      redirect_to post_path(@post)
     else
-      flash[:error]   = 'There is an error while creating a new comment!'
+      flash[:error]   = 'There is an error while creating a new comment: All fields should be filled!'
+      render 'posts/show'
     end
-
-    redirect_to post_path(@post)
   end
 
   def destroy
