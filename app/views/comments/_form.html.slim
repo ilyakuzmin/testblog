@@ -9,5 +9,10 @@
       = f.label :body, :class => 'control-label'
       .controls
         = f.text_area :body, :class => 'text_area'
+    - unless user_signed_in?
+      .control-group
+        = label_tag f, 'Captcha', :class => 'control-label'
+        .controls
+          = recaptcha_tags
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'

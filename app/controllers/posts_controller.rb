@@ -19,8 +19,9 @@ class PostsController < ApplicationController
     if can? :change_state, Comment
       @comments = @post.comments
     else
-      @comments = @post.comments.accepted_or_owner(current_user || nil)
+      @comments = @post.comments.accepted_or_owner(current_user)
     end
+    @comment = Comment.new
 
     respond_with(@post)
   end

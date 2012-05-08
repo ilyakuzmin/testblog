@@ -16,6 +16,7 @@ class Ability
     # Registered user
     else
       can :manage, Post, :user_id => user.id
+      can :read, Post
       can [:create, :destroy, :see_state], Comment, :user_id => user.id
     end
   end

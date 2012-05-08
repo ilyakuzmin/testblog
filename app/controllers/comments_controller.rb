@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(params[:comment])
     @comment.user = current_user if user_signed_in?
 
-    if @comment.save
+    if verify_recaptcha_for_guest && @comment.save
       flash[:success] = 'Comment was created successfully!'
     else
       flash[:error]   = 'There is an error while creating a new comment!'
@@ -37,6 +37,10 @@ class CommentsController < ApplicationController
     @comment.change_state(params[:change_to])
 
     redirect_to @post ? post_path(@post) : comments_path
+  end
+
+  def verify_recaptcha_for_guest
+    user_signed_in?? true : verify_recaptcha
   end
 
 end
