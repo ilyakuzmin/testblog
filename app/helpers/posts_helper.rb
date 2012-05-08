@@ -19,12 +19,13 @@ module PostsHelper
     options_for_select_category.each do |option|
 
       result += content_tag :li do
-        name = if params[:category].to_i == option[1]
-          right_arrow_icon + option[0].gsub(/&nbsp/, "")
+        if params[:category].to_i == option[1]
+          name = right_arrow_icon + option[0].gsub(/&nbsp/, "")
+          link_to name, params.merge({:category => nil})
         else
-          option[0]
+          link_to option[0], params.merge({:category => option[1]})
         end
-        link_to name, params.merge({:category => option[1]})
+
       end
 
     end
