@@ -11,6 +11,7 @@ class Ability
     # Guest
     elsif user.new_record?
       can :read, :all
+      can :create, Comment
 
     # Registered user
     else

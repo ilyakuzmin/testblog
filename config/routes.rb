@@ -5,7 +5,15 @@ Uniqblog::Application.routes.draw do
 
   get "posts/tags" => "posts#tags", :as => :tags
 
-  resources :posts
+  resources :posts do
+    resources :comments do
+      member { get 'state' }
+    end
+  end
+
+  resources :comments do
+    member { get 'state' }
+  end
 
 
   # The priority is based upon order of creation:
