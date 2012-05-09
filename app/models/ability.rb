@@ -10,7 +10,7 @@ class Ability
 
     # Guest
     elsif user.new_record?
-      can :read, :all
+      can :read, Post
       can :create, Comment
 
     # Registered user
