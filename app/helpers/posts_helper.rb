@@ -21,9 +21,9 @@ module PostsHelper
       result += content_tag :li do
         if params[:category].to_i == option[1]
           name = right_arrow_icon + option[0].gsub(/&nbsp/, "")
-          link_to name, params.merge({:category => nil})
+          link_to name, params.merge({:category => nil}), :remote => true
         else
-          link_to option[0], params.merge({:category => option[1]})
+          link_to option[0], params.merge({:category => option[1]}), :remote => true
         end
 
       end
@@ -38,10 +38,10 @@ module PostsHelper
     if splited_tags.include? name
       splited_tags.delete(name)
       result = content_tag(:a, name, :class => css_class)
-      result += link_to '&times'.html_safe, params.merge({:tags => splited_tags.join(",")}), :class => 'close'
+      result += link_to '&times'.html_safe, params.merge({:tags => splited_tags.join(",")}), :class => 'close', :remote => true
     else
       splited_tags << name
-      result = link_to name, params.merge({:tags => splited_tags.join(",")})
+      result = link_to name, params.merge({:tags => splited_tags.join(",")}), :remote => true
     end
     result
   end
