@@ -28,6 +28,12 @@ end
 
 group :test do
   gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'pickle'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'rspec-rails'
 end
 
 group :test, :development do
